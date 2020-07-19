@@ -13,18 +13,21 @@ import com.maks.durov.productslist.R;
 import com.maks.durov.productslist.entity.Product;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
             DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm");
     private final List<Product> products;
-    private final List<Integer> selectedItems;
+    private final Set<Integer> selectedItems;
     private final Context context;
     private final OnSelect onSelect;
 
     public ProductAdapter(Context context, List<Product> products, OnSelect onSelect) {
-        selectedItems = new ArrayList<>();
+        selectedItems = new TreeSet<>(Comparator.reverseOrder());
         this.onSelect = onSelect;
         this.products = products;
         this.context = context;
@@ -53,7 +56,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             if (!selectedItems.contains(position)) {
                 selectedItems.add(position);
             } else {
-                selectedItems.remove((Integer) position);
+                selectedItems.remove(position);
             }
             if (selectedItems.isEmpty()) {
                 onSelect.onCancel();
@@ -68,7 +71,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return products.size();
     }
 
-    public List<Integer> getSelectedItems() {
+    public Set<Integer> getSelectedItems() {
         return selectedItems;
     }
 

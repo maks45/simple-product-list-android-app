@@ -8,8 +8,8 @@ import com.maks.durov.productslist.mvp.ProductPresenter;
 import com.maks.durov.productslist.mvp.ProductView;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class ProductPresenterImpl implements ProductPresenter {
     private final List<Product> checkedProducts;
@@ -50,8 +50,7 @@ public class ProductPresenterImpl implements ProductPresenter {
     }
 
     @Override
-    public void checkProducts(List<Integer> positions) {
-        positions.sort(Comparator.reverseOrder());
+    public void checkProducts(Set<Integer> positions) {
         positions.stream().mapToInt(Integer::intValue).forEach(i -> {
             unCheckedProducts.get(i).setDone(true);
             checkedProducts.add(unCheckedProducts.get(i));
@@ -61,8 +60,7 @@ public class ProductPresenterImpl implements ProductPresenter {
     }
 
     @Override
-    public void removeProducts(List<Integer> positions) {
-        positions.sort(Comparator.reverseOrder());
+    public void removeProducts(Set<Integer> positions) {
         new RemoveProductAsyncTask(this)
                 .execute(positions.toArray(new Integer[0]));
         onDataChanged();
