@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            android:id="@+id/item_image"
+            android:layout_alignParentStart="true"
+            android:contentDescription="item image"
+            android:visibility="gone"
+            android:layout_centerVertical="true"
+    />
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/item_image"
+            android:layout_marginStart="5dp"
+            android:orientation="vertical">
+        <com.google.android.material.textview.MaterialTextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_view_title"
+                android:maxLines="3"
+                android:text="test_text"
+
+        />
+        <com.google.android.material.textview.MaterialTextView
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_view_date_time"
+                android:lines="1"
+                android:text="19.01.16 23:32"
+        />
+    </LinearLayout>
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_view_checkmark"
+            android:src="@drawable/ic_check_black_24dp"
+            android:contentDescription="checkmark"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+    />
+</RelativeLayout>
